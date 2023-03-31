@@ -30,11 +30,11 @@ public class CalendrierAnnuel {
 		}
 
 		private boolean estLibre(int jour) {
-			return jours[jour] == false;
+			return !jours[jour];
 		}
 
 		private void reserver(int jour) throws IllegalStateException {
-			if (estLibre(jour)) {
+			if (!estLibre(jour)) {
 				throw new IllegalStateException();
 			}
 			jours[jour] = true;
@@ -46,7 +46,7 @@ public class CalendrierAnnuel {
 	}
 
 	public boolean reserver(int jour, int mois) {
-		if (!estLibre(jour, mois)) {
+		if (estLibre(jour, mois)) {
 			calendrier[mois - 1].reserver(jour - 1);
 		} else {
 			return false;
